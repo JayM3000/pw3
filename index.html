@@ -3624,7 +3624,7 @@
             <input type="tel" name="phone" placeholder="Phone Number" required>
             <textarea name="message"
               placeholder="Tell us about your event (party size, date, what you're looking for...)" required></textarea>
-            <button type="button" class="catering-submit">Submit Request</button>
+            <button type="button" class="catering-submit" onclick="submitCateringRequest()">Submit Request</button>
           </form>
         </div>
       </div>
@@ -4054,6 +4054,35 @@
     function toggleFaq(btn) {
       const item = btn.parentElement;
       item.classList.toggle('active');
+    }
+
+    // Catering Form
+    function submitCateringRequest() {
+      const nameInput = document.querySelector('.catering-form input[name="name"]');
+      const phoneInput = document.querySelector('.catering-form input[name="phone"]');
+      const messageInput = document.querySelector('.catering-form textarea[name="message"]');
+
+      const name = nameInput.value;
+      const phone = phoneInput.value;
+      const message = messageInput.value;
+
+      if (!name || !phone || !message) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      const subject = `Catering Request from ${name}`;
+      const body = `Name: ${name}\nPhone: ${phone}\nMessage: ${message}`;
+
+      // Standard mailto approach
+      window.location.href = `mailto:stayinafaithjay@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Clear form after delay
+      setTimeout(() => {
+        nameInput.value = '';
+        phoneInput.value = '';
+        messageInput.value = '';
+      }, 1000);
     }
   </script>
 </body>
