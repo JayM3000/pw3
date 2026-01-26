@@ -11,12 +11,22 @@
     rel="stylesheet">
   <style>
     :root {
+      /* =========================================
+         THEME CONFIGURATION
+         Change these hex codes to update site colors
+         ========================================= */
       --beige: #F5F0E6;
+      /* Main Background */
       --beige-dark: #E8E0D0;
+      /* Secondary Background/Borders */
       --red: #C41E3A;
+      /* Primary Brand Color */
       --red-dark: #A01830;
+      /* Darker Shade of Brand Color */
       --black: #1A1A1A;
+      /* Headings & Text */
       --yellow: #F4C430;
+      /* Accent Color */
       --white: #FFFFFF;
     }
 
@@ -239,7 +249,8 @@
       background: linear-gradient(to right, transparent 70%, var(--beige) 100%);
     }
 
-    .video-container video {
+    .video-container video,
+    .video-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -1778,11 +1789,26 @@
       }
 
       .reviews-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding-bottom: 20px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        /* Hide scrollbar for cleaner look if desired, or keep default */
+      }
+
+      .reviews-grid::-webkit-scrollbar {
         display: none;
       }
 
+      .review-card {
+        min-width: 85%;
+        scroll-snap-align: center;
+      }
+
       .reviews-slider-container {
-        display: block;
+        display: none;
         position: relative;
         max-width: 500px;
         margin: 0 auto;
@@ -2272,8 +2298,7 @@
           </svg>
           CALL NOW
         </a>
-        <a href="https://slicelife.com/restaurants/nj/burlington/08016/pizza-wings-steaks-things/menu" target="_blank"
-          class="order-now-btn">ORDER NOW<svg viewBox="0 0 24 24">
+        <a href="#delivery-options" class="order-now-btn">ORDER NOW<svg viewBox="0 0 24 24">
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
           </svg></a>
       </div>
@@ -2289,9 +2314,15 @@
 
     <section class="hero">
       <div class="video-container">
+        <!-- 
+           HERO BACKGROUND CONFIGURATION
+           - To use VIDEO: Keep the <video> tag uncommented.
+           - To use IMAGE: Comment out the <video> tag and uncomment the <img> tag below.
+        -->
         <video autoplay muted loop playsinline>
           <source src="pwstvideohero.mp4" type="video/mp4">
         </video>
+        <!-- <img src="images/hero.jpg" alt="Hero Background"> -->
       </div>
       <div class="accent-stripe"></div>
       <div class="hero-content">
@@ -2340,7 +2371,7 @@
             restaurant. We take pride in serving food near me that is fresh and made-to-order using recipes passed down
             through generations. From our hand-tossed pizza to our crispy wings and authentic cheesesteaks, every dish
             is crafted with love and served with a smile</p>
-          <a href="#" class="about-btn">Order Now</a>
+          <a href="#delivery-options" class="about-btn">Order Now</a>
         </div>
       </div>
     </section>
@@ -3580,7 +3611,7 @@
       </div>
 
       <!-- Delivery Partner Logos -->
-      <div class="delivery-logos">
+      <div id="delivery-options" class="delivery-logos">
         <p class="delivery-tagline">Delivery Near Me : Order Online Through</p>
         <div class="delivery-grid">
           <a href="https://slicelife.com/restaurants/nj/burlington/08016/pizza-wings-steaks-things/menu" target="_blank"
@@ -4075,7 +4106,7 @@
       const body = `Name: ${name}\nPhone: ${phone}\nMessage: ${message}`;
 
       // Standard mailto approach
-      window.location.href = `mailto:stayinafaithjay@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:pizzawings@me.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
       // Clear form after delay
       setTimeout(() => {
